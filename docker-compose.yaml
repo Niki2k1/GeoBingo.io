@@ -16,6 +16,8 @@ services:
       - VITE_SUPABASE_URL
       - VITE_SUPABASE_KEY
       - VITE_GMAPSAPI
+      # Coolify reads this to generate the Traefik route/cert for the frontend on port 80
+      - SERVICE_FQDN_FRONTEND_80
     expose:
       - "80"
     build:
