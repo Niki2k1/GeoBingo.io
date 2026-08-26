@@ -1,22 +1,27 @@
 <script>
   import Kofi from "$lib/components/Kofi.svelte";
-  import { InstagramIcon, YoutubeIcon, TwitchIcon } from "svelte-feather-icons";
+  import {
+    InstagramIcon,
+    YoutubeIcon,
+    TwitchIcon,
+    GithubIcon,
+  } from "svelte-feather-icons";
 </script>
 
-<svelte:head>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-</svelte:head>
 <div>
   <div class="w-full flex gap-2 justify-center items-center p-2">
-    <div>
-      <a
-        class="github-button"
-        href="https://github.com/s0er3n/GeoBingo.io"
-        data-size="large"
-        data-show-count="true"
-        aria-label="Star GeoBingo.io on GitHub">Star GeoBingo.io on GitHub</a
+    <a
+      href="https://github.com/s0er3n/GeoBingo.io"
+      target="_blank"
+      rel="noopener"
+      aria-label="Star GeoBingo.io on GitHub"
+    >
+      <div
+        class="p-2 rounded-md h-10 shadow-md bg-slate-800 text-white flex justify-center items-center gap-1"
       >
-    </div>
+        <GithubIcon size="1x" /> Star on GitHub
+      </div>
+    </a>
   </div>
 
   <div class=" flex flex-wrap gap-2 justify-center items-center">

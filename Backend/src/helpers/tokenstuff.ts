@@ -4,8 +4,8 @@ import players from "../objects/PlayerHandler";
 import Player from "../objects/Player";
 import { MySocket } from "../types";
 
-// provide key in production!!
-const jwtpriv: string = process.env.jwtpriv ?? "secret";
+// provide key in production!! (|| not ?? so an empty-string env var still falls back)
+const jwtpriv: string = process.env.jwtpriv || "secret";
 
 export const verifyAndGetAuth = (token: string) => {
   let decode: any;
