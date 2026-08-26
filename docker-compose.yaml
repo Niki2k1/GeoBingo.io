@@ -18,6 +18,23 @@ services:
       - VITE_GMAPSAPI
     expose:
       - "80"
+    # Traefik routing is defined explicitly here (matching Coolify's own label scheme)
+    # because Coolify's compose domain field could not be set via the API for this app.
+    labels:
+      - traefik.enable=true
+      - traefik.http.middlewares.gzip.compress=true
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.routers.geobingo-http.entryPoints=http
+      - traefik.http.routers.geobingo-http.middlewares=redirect-to-https
+      - 'traefik.http.routers.geobingo-http.rule=Host(`geobingo-a26f87a24749b0d17ee0f979926bf2290afcd63c.kommtkevinonline.de`)'
+      - traefik.http.routers.geobingo-http.service=geobingo
+      - traefik.http.routers.geobingo-https.entryPoints=https
+      - traefik.http.routers.geobingo-https.middlewares=gzip
+      - 'traefik.http.routers.geobingo-https.rule=Host(`geobingo-a26f87a24749b0d17ee0f979926bf2290afcd63c.kommtkevinonline.de`)'
+      - traefik.http.routers.geobingo-https.service=geobingo
+      - traefik.http.routers.geobingo-https.tls.certresolver=letsencrypt
+      - traefik.http.routers.geobingo-https.tls=true
+      - traefik.http.services.geobingo.loadbalancer.server.port=80
     build:
       context: ./Frontend
       args:
