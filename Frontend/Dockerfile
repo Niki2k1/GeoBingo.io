@@ -29,4 +29,6 @@ ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
 RUN npm run build
 FROM nginx
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+# Baked in instead of a compose bind mount so Coolify doesn't fail resolving ./nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
