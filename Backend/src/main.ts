@@ -1,5 +1,11 @@
 import express from "express";
 
+// Keep the game server alive on stray async errors instead of exiting.
+// Without this a single rejected startup fetch would crash Node and put the
+// container into a restart loop when self-hosted without the optional APIs.
+process.on("uncaughtException", (err) => console.error("uncaughtException:", err));
+process.on("unhandledRejection", (err) => console.error("unhandledRejection:", err));
+
 import bodyParser from "body-parser";
 
 import { createServer as http } from "http";
